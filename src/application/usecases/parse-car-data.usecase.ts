@@ -1,53 +1,57 @@
 import { CarDataEntity } from 'src/domain/entities';
-import { DriverInferenceEnum } from '../enums';
+import { DrivingLevelEnum } from '../enums';
 import {
   LoggerAdapterInterface,
   SocketGatewayData,
-  UseCase,
+  UseCaseInterface,
 } from '../interfaces';
 import { getIoProperty } from '../utils';
 
 export class ParseCarDataUseCase
-  implements UseCase<CarDataEntity, SocketGatewayData>
+  implements UseCaseInterface<CarDataEntity, SocketGatewayData>
 {
   constructor(private readonly logger: LoggerAdapterInterface) {}
 
   execute(input: CarDataEntity): SocketGatewayData {
-    const speedMap = new Map<number, DriverInferenceEnum>([
-      [40, DriverInferenceEnum.Low],
-      [80, DriverInferenceEnum.Moderated],
-      [120, DriverInferenceEnum.High],
+    const throttlePositionMap = new Map<number, DrivingLevelEnum>([
+      [30, DrivingLevelEnum.Low],
+      [60, DrivingLevelEnum.Moderated],
+      [90, DrivingLevelEnum.High],
+      [100, DrivingLevelEnum.VeryHigh],
     ]);
 
-    const currentSpeed = getIoProperty(input, 'Vehicle Speed');
+    const currentThrottlePosition = getIoProperty(input, 'Throttle Position');
 
-    if (!currentSpeed) {
-      this.logger.error('No current speed found, setting to low');
+    if (!currentThrottlePosition) {
+      this.logger.error('No throttle position found, setting to low');
 
       return {
-        currentDriverInference: DriverInferenceEnum.Low,
+        currentDriverInference: DrivingLevelEnum.Low,
       };
     }
 
-    let currentDriverInference: DriverInferenceEnum = DriverInferenceEnum.Low;
+    let drivingLevel: DrivingLevelEnum = DrivingLevelEnum.Low;
 
-    for (const [speed, driverInference] of speedMap.entries()) {
-      if (!currentSpeed.value) {
-        this.logger.error('No current speed value found');
+    for (const [
+      throttlePosition,
+      driverInference,
+    ] of throttlePositionMap.entries()) {
+      if (!currentThrottlePosition.value) {
+        this.logger.error('No throttle position value found');
 
         return {
-          currentDriverInference: DriverInferenceEnum.Low,
+          currentDriverInference: DrivingLevelEnum.Low,
         };
       }
 
-      if (currentSpeed.value <= speed) {
-        currentDriverInference = driverInference;
+      if (currentThrottlePosition.value <= throttlePosition) {
+        drivingLevel = driverInference;
         break;
       }
     }
 
     return {
-      currentDriverInference,
+      currentDriverInference: drivingLevel,
     };
   }
 }

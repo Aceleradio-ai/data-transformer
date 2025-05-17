@@ -1,7 +1,7 @@
-import { DriverInferenceEnum } from '../enums';
+import { DrivingLevelEnum } from '../enums';
 
 export type SocketGatewayData = {
-  currentDriverInference: DriverInferenceEnum;
+  currentDriverInference: DrivingLevelEnum;
 };
 
 export interface SocketGatewayInterface {

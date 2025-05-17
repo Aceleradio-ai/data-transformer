@@ -1,5 +1,6 @@
-export enum DriverInferenceEnum {
+export enum DrivingLevelEnum {
   Low,
   Moderated,
   High,
+  VeryHigh,
 }
