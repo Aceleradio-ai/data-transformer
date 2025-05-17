@@ -11,10 +11,11 @@ export class SendCarDataUseCase
   ) {}
 
   execute(input: CarDataEntity): void {
-    const { currentDriverInference } = this.parseCarDataUseCase.execute(input);
+    const { currentDriverLevel: currentDriverInference } =
+      this.parseCarDataUseCase.execute(input);
 
     this.socketGateway.notify({
-      currentDriverInference,
+      currentDriverLevel: currentDriverInference,
     });
   }
 }

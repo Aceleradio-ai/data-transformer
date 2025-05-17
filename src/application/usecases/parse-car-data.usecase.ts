@@ -26,7 +26,7 @@ export class ParseCarDataUseCase
       this.logger.error('No throttle position found, setting to low');
 
       return {
-        currentDriverInference: DrivingLevelEnum.Low,
+        currentDriverLevel: DrivingLevelEnum.Low,
       };
     }
 
@@ -40,7 +40,7 @@ export class ParseCarDataUseCase
         this.logger.error('No throttle position value found');
 
         return {
-          currentDriverInference: DrivingLevelEnum.Low,
+          currentDriverLevel: DrivingLevelEnum.Low,
         };
       }
 
@@ -51,7 +51,7 @@ export class ParseCarDataUseCase
     }
 
     return {
-      currentDriverInference: drivingLevel,
+      currentDriverLevel: drivingLevel,
     };
   }
 }
