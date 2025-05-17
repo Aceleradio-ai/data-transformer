@@ -16,7 +16,7 @@ export class ParseCarDataUseCase
     const throttlePositionMap = new Map<number, DrivingLevelEnum>([
       [20, DrivingLevelEnum.Low],
       [40, DrivingLevelEnum.Moderated],
-      [60, DrivingLevelEnum.High],
+      [100, DrivingLevelEnum.High],
     ]);
 
     const currentThrottlePosition = getIoProperty(input, 'Throttle Position');
