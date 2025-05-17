@@ -1,5 +1,5 @@
 import { Provider } from '@nestjs/common';
-import { CarDataGateway } from '../adapters/gateways/car-data.gateway';
+import { CarDataGateway } from '../adapters';
 
 export const CarDataGatewayProvider: Provider = {
   provide: CarDataGateway,

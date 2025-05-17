@@ -1,7 +1,7 @@
 import { Provider } from '@nestjs/common';
 import { ParseCarDataUseCase } from 'src/application/usecases';
 import { SendCarDataUseCase } from 'src/application/usecases/send-car-data.usecase';
-import { CarDataGateway } from '../adapters/gateways/car-data.gateway';
+import { CarDataGateway } from '../adapters';
 
 export const SendCarDataUseCaseProvider: Provider = {
   provide: SendCarDataUseCase,
