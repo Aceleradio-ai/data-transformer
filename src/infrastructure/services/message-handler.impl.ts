@@ -14,11 +14,11 @@ export class MessageHandlerImpl
     private readonly sendCarDataUseCase: SendCarDataUseCase,
   ) {}
 
-  async onModuleInit(): Promise<void> {
-    await this.registerMessageListener();
+  onModuleInit(): void {
+    this.registerMessageListener();
   }
 
-  async registerMessageListener(): Promise<void> {
+  registerMessageListener(): void {
     const topicName = this.configService.get<string>('PUBSUB_TOPIC_NAME');
 
     if (!topicName) {
@@ -33,8 +33,8 @@ export class MessageHandlerImpl
       throw new Error('PUBSUB_SUBSCRIPTION_NAME is not set');
     }
 
-    const [topic] = await this.pubSub.createTopic(topicName);
-    const [subscription] = await topic.createSubscription(subscriptionName);
+    const topic = this.pubSub.topic(topicName);
+    const subscription = topic.subscription(subscriptionName);
 
     subscription.on('message', (message) => {
       try {

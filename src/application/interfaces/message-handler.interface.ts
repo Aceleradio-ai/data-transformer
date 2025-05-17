@@ -1,3 +1,3 @@
 export interface MessageHandlerInterface {
-  registerMessageListener(): Promise<void>;
+  registerMessageListener(): void;
 }

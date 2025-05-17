@@ -5,7 +5,7 @@ import {
   SocketGatewayInterface,
 } from 'src/application/interfaces';
 
-@WebSocketGateway(81, { transports: ['websocket'] })
+@WebSocketGateway(1025, { transports: ['websocket'] })
 export class CarDataGateway implements SocketGatewayInterface {
   @WebSocketServer()
   server: Server;

@@ -22,7 +22,7 @@ export class ParseCarDataUseCase
     const currentSpeed = getIoProperty(input, 'Vehicle Speed');
 
     if (!currentSpeed) {
-      this.logger.error('No current speed found');
+      this.logger.error('No current speed found, setting to low');
 
       return {
         currentDriverInference: DriverInferenceEnum.Low,
