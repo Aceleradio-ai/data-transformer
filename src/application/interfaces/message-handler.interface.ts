@@ -1,3 +1,3 @@
 export interface MessageHandlerInterface {
-  onMessage(): Promise<void>;
+  registerMessageListener(): Promise<void>;
 }

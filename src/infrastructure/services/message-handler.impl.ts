@@ -1,17 +1,24 @@
 import { PubSub } from '@google-cloud/pubsub';
+import { OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { MessageHandlerInterface } from 'src/application/interfaces/message-handler.interface';
 import { SendCarDataUseCase } from 'src/application/usecases';
 import { CarDataEntity, CarDataPayload } from 'src/domain/entities';
 
-export class MessageHandlerImpl implements MessageHandlerInterface {
+export class MessageHandlerImpl
+  implements MessageHandlerInterface, OnModuleInit
+{
   constructor(
     private readonly pubSub: PubSub,
     private readonly configService: ConfigService,
     private readonly sendCarDataUseCase: SendCarDataUseCase,
   ) {}
 
-  async onMessage(): Promise<void> {
+  async onModuleInit(): Promise<void> {
+    await this.registerMessageListener();
+  }
+
+  async registerMessageListener(): Promise<void> {
     const topicName = this.configService.get<string>('PUBSUB_TOPIC_NAME');
 
     if (!topicName) {
