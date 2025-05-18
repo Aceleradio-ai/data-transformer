@@ -1,4 +1,4 @@
-# 🚗 Car DJ - Transformador de Dados Veiculares
+# 🚗 Aceleradio.AI - Transformador de Dados Veiculares
 
 Um sistema completamente desnecessário que muda o gênero musical baseado na velocidade do seu carro. Porque quem precisa de um DJ quando seu carro pode ser um?
 
