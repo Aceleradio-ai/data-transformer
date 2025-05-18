@@ -1,7 +1,10 @@
 import { CarDataEntity } from 'src/domain/entities';
 import { DrivingLevelEnum } from '../enums';
-import { LoggerAdapterInterface, SocketGatewayData } from '../interfaces';
-import { ParseCarDataUseCaseInterface } from '../interfaces/usecases';
+import {
+  LoggerAdapterInterface,
+  ParseCarDataUseCaseInterface,
+  SocketGatewayData,
+} from '../interfaces';
 import { getIoProperty } from '../utils';
 
 export class ParseCarDataUseCase implements ParseCarDataUseCaseInterface {

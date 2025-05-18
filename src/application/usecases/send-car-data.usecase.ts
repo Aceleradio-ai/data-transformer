@@ -1,6 +1,8 @@
 import { CarDataEntity } from 'src/domain/entities';
-import { SocketGatewayInterface } from '../interfaces';
-import { SendCarDataUseCaseInterface } from '../interfaces/usecases';
+import {
+  SendCarDataUseCaseInterface,
+  SocketGatewayInterface,
+} from '../interfaces';
 import { ParseCarDataUseCase } from './parse-car-data.usecase';
 
 export class SendCarDataUseCase implements SendCarDataUseCaseInterface {
