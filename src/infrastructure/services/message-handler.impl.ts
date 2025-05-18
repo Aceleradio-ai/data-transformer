@@ -2,7 +2,7 @@ import { PubSub } from '@google-cloud/pubsub';
 import { OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { MessageHandlerInterface } from 'src/application/interfaces/message-handler.interface';
-import { SendCarDataUseCase } from 'src/application/usecases';
+import { SendCarDataUseCaseInterface } from 'src/application/interfaces/usecases';
 import { CarDataEntity, CarDataPayload } from 'src/domain/entities';
 
 export class MessageHandlerImpl
@@ -11,7 +11,7 @@ export class MessageHandlerImpl
   constructor(
     private readonly pubSub: PubSub,
     private readonly configService: ConfigService,
-    private readonly sendCarDataUseCase: SendCarDataUseCase,
+    private readonly sendCarDataUseCase: SendCarDataUseCaseInterface,
   ) {}
 
   onModuleInit(): void {

@@ -1,15 +1,10 @@
 import { CarDataEntity } from 'src/domain/entities';
 import { DrivingLevelEnum } from '../enums';
-import {
-  LoggerAdapterInterface,
-  SocketGatewayData,
-  UseCaseInterface,
-} from '../interfaces';
+import { LoggerAdapterInterface, SocketGatewayData } from '../interfaces';
+import { ParseCarDataUseCaseInterface } from '../interfaces/usecases';
 import { getIoProperty } from '../utils';
 
-export class ParseCarDataUseCase
-  implements UseCaseInterface<CarDataEntity, SocketGatewayData>
-{
+export class ParseCarDataUseCase implements ParseCarDataUseCaseInterface {
   constructor(private readonly logger: LoggerAdapterInterface) {}
 
   execute(input: CarDataEntity): SocketGatewayData {
