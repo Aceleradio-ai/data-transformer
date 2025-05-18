@@ -14,9 +14,10 @@ export class ParseCarDataUseCase
 
   execute(input: CarDataEntity): SocketGatewayData {
     const throttlePositionMap = new Map<number, DrivingLevelEnum>([
-      [20, DrivingLevelEnum.Low],
-      [40, DrivingLevelEnum.Moderated],
-      [100, DrivingLevelEnum.High],
+      [6, DrivingLevelEnum.Low],
+      [7, DrivingLevelEnum.Moderated],
+      [14, DrivingLevelEnum.High],
+      [100, DrivingLevelEnum.VeryHigh],
     ]);
 
     const currentThrottlePosition = getIoProperty(input, 'Throttle Position');
