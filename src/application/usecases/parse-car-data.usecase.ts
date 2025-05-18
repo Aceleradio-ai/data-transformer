@@ -9,9 +9,9 @@ export class ParseCarDataUseCase implements ParseCarDataUseCaseInterface {
 
   execute(input: CarDataEntity): SocketGatewayData {
     const throttlePositionMap = new Map<number, DrivingLevelEnum>([
-      [14, DrivingLevelEnum.Low],
-      [28, DrivingLevelEnum.Moderated],
-      [42, DrivingLevelEnum.High],
+      [8, DrivingLevelEnum.Low],
+      [14, DrivingLevelEnum.Moderated],
+      [21, DrivingLevelEnum.High],
       [100, DrivingLevelEnum.VeryHigh],
     ]);
 
