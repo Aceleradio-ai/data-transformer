@@ -14,8 +14,6 @@ export class SendCarDataUseCase
     const { currentDriverLevel: currentDriverInference } =
       this.parseCarDataUseCase.execute(input);
 
-    console.log('currentDriverLogerLevel', currentDriverInference);
-
     this.socketGateway.notify({
       currentDriverLevel: currentDriverInference,
     });
